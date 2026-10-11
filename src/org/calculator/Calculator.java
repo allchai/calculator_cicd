@@ -1,32 +1,50 @@
 package org.calculator;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
     private static int _savedValue;
 
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to calculator!");
         System.out.println("Choose operation:");
         System.out.println("0 - calculator");
         System.out.println("1 - save value");
 
-        int mode = s.nextInt();
-        s.close();
-        if (mode == 0) calculatorMode();
-        if (mode == 1) saveValue();
+        int mode = scanner.nextInt();
+        if (mode == 0) {
+            System.out.println("===Welcome to calculator mode!===");
+            System.out.println("Write a simple expression: ");
+            String expression = scanner.nextLine();
+            try {
+                double result = calculatorMode(expression);
+                System.out.println(String.format("Result: %f", result));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Wrong expression!");
+                scanner.close();
+                return;
+            }      
+        } else if (mode == 1) {
+            System.out.println("===Welcome to value saver===");
+            System.out.println("Print value to save:");
+            try {
+                int inputValue = scanner.nextInt();
+                saveValue(inputValue);
+                System.out.println("Now you can use this value with %0!");
+                main(null);
+            } catch(InputMismatchException e) {
+                System.out.println("This is not integer!");
+                scanner.close();
+                return;
+            }
+        }
+        scanner.close();
     }
 
-    public static void calculatorMode() {
-        Scanner s = new Scanner(System.in);
-        
-        System.out.println("===Welcome to calculator mode!===");
-        System.out.println("Write a simple expression: ");
-        
-        String expression = s.nextLine();
-
+    public static double calculatorMode(String expression) {
         var expressionParts = expression.split(" ");
         int arg_a = 0;
         int arg_b = 0;
@@ -64,24 +82,13 @@ public class Calculator {
                 break;
 
             default:
-                System.out.println("Error in expression!");
-                s.close();
-                return;
+                throw new IllegalArgumentException("Error in expression");
         }
 
-        System.out.println(String.format("Result: %f", result));
-        s.close();
+        return result;
     }
 
-    public static void saveValue() {
-        Scanner s = new Scanner(System.in);
-
-        System.out.println("===Welcome to value saver===");
-        System.out.println("Print value to save:");
-        _savedValue = s.nextInt();
-        System.out.println("Now you can use this value with %0!");
-        
-        s.close();
-        main(null);
+    public static void saveValue(int value) {
+        _savedValue = value;
     }
 }
