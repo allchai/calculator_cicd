@@ -4,9 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Calculator {
-    private static int _savedValue;
+    private int _savedValue;
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to calculator!");
@@ -44,7 +44,7 @@ public class Calculator {
         scanner.close();
     }
 
-    public static double calculatorMode(String expression) {
+    public double calculatorMode(String expression) {
         var expressionParts = expression.split(" ");
         int arg_a = 0;
         int arg_b = 0;
@@ -88,7 +88,7 @@ public class Calculator {
         return result;
     }
 
-    public static void saveValue(int value) {
+    public void saveValue(int value) {
         _savedValue = value;
     }
 }
