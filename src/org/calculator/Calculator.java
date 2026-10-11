@@ -74,7 +74,7 @@ public class Calculator {
                 break;
 
             case "*":
-                result = arg_a / arg_b;
+                result = arg_a * arg_b;
                 break;
 
             case "^":
