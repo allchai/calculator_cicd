@@ -1,8 +1,10 @@
-package test.java;
+package org.calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.calculator.Calculator;
-import org.junit.Test;
+// import org.calculator.Calculator;
+// import org.junit.Text;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculatorTest {
     @Test 
