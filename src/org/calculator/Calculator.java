@@ -11,11 +11,11 @@ public class Calculator {
 
         System.out.println("Welcome to calculator!");
         System.out.println("Choose operation:");
-        System.out.println("0 - calculator");
-        System.out.println("1 - save value");
+        System.out.println("1 - calculator");
+        System.out.println("2 - save value");
 
         int mode = scanner.nextInt();
-        if (mode == 0) {
+        if (mode == 1) {
             System.out.println("===Welcome to calculator mode!===");
             System.out.println("Write a simple expression: ");
             String expression = scanner.nextLine();
@@ -27,7 +27,7 @@ public class Calculator {
                 scanner.close();
                 return;
             }      
-        } else if (mode == 1) {
+        } else if (mode == 2) {
             System.out.println("===Welcome to value saver===");
             System.out.println("Print value to save:");
             try {
